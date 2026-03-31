@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-alexandria), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-headline: var(--font-aldrich), ui-sans-serif, system-ui, sans-serif;
+
+  /* Theme Tokens mapped to CSS vars */
+  --color-background: var(--theme-background);
+  --color-surface: var(--theme-surface);
+  --color-surface-elevated: var(--theme-surface-elevated);
+  --color-surface-deep: var(--theme-surface-deep);
+  --color-primary: var(--theme-primary);
+  --color-primary-hover: var(--theme-primary-hover);
+  --color-primary-text: var(--theme-primary-text);
+  --color-secondary-text: var(--theme-secondary-text);
+  --color-border-subtle: var(--theme-border-subtle);
+}
+
+/* Fallback initial variables */
+:root {
+  --theme-background: #1a1a1a;
+  --theme-surface: #2a2a2a;
+  --theme-surface-elevated: #333333;
+  --theme-surface-deep: #141414;
+  --theme-primary: #ff7a00;
+  --theme-primary-hover: #ffb366;
+  --theme-primary-text: #d9d9d9;
+  --theme-secondary-text: #8b8b8b;
+  --theme-border-subtle: #3a3a3a;
+}
+
+/* Default and Dark Orange Accent (Current + System Dark Mode) */
+html.dark {
+  --theme-background: #1a1a1a;
+  --theme-surface: #2a2a2a;
+  --theme-surface-elevated: #333333;
+  --theme-surface-deep: #141414;
+  --theme-primary: #ff7a00;
+  --theme-primary-hover: #ffb366;
+  --theme-primary-text: #d9d9d9;
+  --theme-secondary-text: #8b8b8b;
+  --theme-border-subtle: #3a3a3a;
+}
+
+/* Theme: Dark Purple System + Tech Clean */
+html.dark-purple {
+  --theme-background: #0f0a1a;
+  --theme-surface: #18102b;
+  --theme-surface-elevated: #22173d;
+  --theme-surface-deep: #0a0612;
+  --theme-primary: #8b5cf6; /* Vibrant violet/purple */
+  --theme-primary-hover: #a78bfa;
+  --theme-primary-text: #f3f4f6;
+  --theme-secondary-text: #9ca3af;
+  --theme-border-subtle: #2d1f4d; /* Subtle purple border */
+}
+
+/* Theme: Light Mode */
+html.light {
+  --theme-background: #fafafa;
+  --theme-surface: #ffffff;
+  --theme-surface-elevated: #f0f0f0;
+  --theme-surface-deep: #e5e5e5;
+  --theme-primary: #ff7a00; /* Maintains brand identity on light mode */
+  --theme-primary-hover: #e06b00;
+  --theme-primary-text: #1a1a1a;
+  --theme-secondary-text: #5a5a5a;
+  --theme-border-subtle: #d1d1d1;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-primary-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-headline);
+}
