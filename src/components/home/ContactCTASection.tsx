@@ -28,6 +28,7 @@ export default function ContactCTASection() {
         <Link
           href="https://wa.me/556283155703"
           className="inline-flex h-16 items-center justify-center px-10 rounded-full bg-primary text-surface font-headline font-bold text-lg hover:shadow-[0_0_40px_rgba(255,122,0,0.4)] hover:-translate-y-1 transition-all duration-300"
+          target="_blank"
         >
           Entre em Contato
         </Link>
