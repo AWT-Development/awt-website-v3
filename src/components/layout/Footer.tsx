@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { MapPin, Phone, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 
 import Instagram from "@/assets/instagram.svg";
 import AwtFooterLogoDefault from "@/assets/awtFooterLogo.png";
@@ -28,7 +29,13 @@ export default function Footer() {
         : AwtFooterLogoDefault; // fallback for 'dark'
 
   return (
-    <footer className="w-full bg-surface-deep pt-16 pb-8 border-t border-border-subtle/10 mt-auto">
+    <motion.footer 
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="w-full bg-surface-deep pt-16 pb-8 border-t border-border-subtle/10 mt-auto"
+    >
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
         <div className="col-span-1 md:col-span-2 space-y-4">
           <div className="flex items-center gap-2 mb-6">
@@ -81,6 +88,6 @@ export default function Footer() {
           <Link href="#" className="text-xs text-secondary-text hover:text-primary-text transition-colors">Terms of Service</Link>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

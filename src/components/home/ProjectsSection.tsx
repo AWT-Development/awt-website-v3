@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import ImageHyperion from "@/assets/Image_Hyperion.png"
 import ImageLucca from "@/assets/Image_Lucca.png"
 
@@ -42,7 +45,14 @@ export default function ProjectsSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {projects.map((project, index) => (
-            <div key={project.id} className={`flex flex-col gap-6 ${index % 2 === 1 ? 'md:mt-16' : ''}`}>
+            <motion.div 
+              key={project.id} 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              className={`flex flex-col gap-6 ${index % 2 === 1 ? 'md:mt-16' : ''}`}
+            >
               {/* Project Image Placeholder - using "No-Line" rule with tonal elevation */}
               <div className="w-full md:w-[90%] lg:w-[85%] aspect-[4/3] md:aspect-video bg-surface rounded-2xl overflow-hidden relative group">
                 {/* Simulated inner image container (Project Preview design spec) */}
@@ -66,7 +76,7 @@ export default function ProjectsSection() {
                   {project.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

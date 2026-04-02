@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function ContactCTASection() {
   return (
@@ -6,7 +9,13 @@ export default function ContactCTASection() {
       {/* Background graphic element */}
       <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] pointer-events-none translate-x-1/3 translate-y-1/3"></div>
 
-      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.6 }}
+        className="max-w-4xl mx-auto px-6 text-center relative z-10"
+      >
         <h2 className="font-headline text-4xl md:text-6xl font-bold mb-8">
           Pronto para tirar sua<br />
           <span className="text-primary italic font-light font-sans">ideia do papel?</span>
@@ -22,7 +31,7 @@ export default function ContactCTASection() {
         >
           Entre em Contato
         </Link>
-      </div>
+      </motion.div>
     </section>
   );
 }

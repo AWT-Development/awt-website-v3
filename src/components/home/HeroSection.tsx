@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
@@ -6,7 +9,12 @@ export default function HeroSection() {
       {/* Background radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 blur-[150px] rounded-full opacity-60 pointer-events-none"></div>
 
-      <div className="max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-5xl mx-auto px-6 relative z-10 flex flex-col items-center"
+      >
         {/* Top Badge */}
         <div className="mb-8 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-border-subtle/20 bg-surface-deep/40 w-fit">
           <span className="text-primary-text/80 text-xs font-headline tracking-[0.15em] font-medium uppercase">
@@ -40,7 +48,7 @@ export default function HeroSection() {
             Ver Portfólio
           </Link>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

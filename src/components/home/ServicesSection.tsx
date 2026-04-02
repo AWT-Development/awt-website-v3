@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -45,9 +48,13 @@ export default function ServicesSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <div 
+          {services.map((service, index) => (
+            <motion.div 
               key={service.id} 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-surface rounded-2xl p-8 hover:bg-surface-elevated transition-colors border border-transparent hover:border-white/5 group flex flex-col"
             >
               <h3 className="text-xl font-headline font-bold text-primary-text mb-4 group-hover:text-primary transition-colors">
@@ -63,7 +70,7 @@ export default function ServicesSection() {
                 Saber Mais
                 <span className="text-lg leading-none group-hover:translate-x-1 transition-transform">→</span>
               </Link>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

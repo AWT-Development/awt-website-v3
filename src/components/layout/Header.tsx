@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 import LogoAwtDefault from "@/assets/awtHeaderLogo.png";
 import LogoAwtDarkOrange from "@/assets/awtHeaderLogoDarkOrange.png";
@@ -27,7 +28,12 @@ export default function Header() {
         : LogoAwtDefault; // fallback for 'dark'
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-background/80 border-b border-border-subtle/20">
+    <motion.header 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="sticky top-0 z-50 w-full backdrop-blur-md bg-background/80 border-b border-border-subtle/20"
+    >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="#" className="flex items-center gap-2">
           {/* Logo container */}
@@ -57,6 +63,6 @@ export default function Header() {
           </button>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }
