@@ -9,7 +9,7 @@ export default function ContactCTASection() {
       {/* Background graphic element */}
       <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[150px] pointer-events-none translate-x-1/3 translate-y-1/3"></div>
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -26,7 +26,7 @@ export default function ContactCTASection() {
         </p>
 
         <Link
-          href="mailto:awtdevelopment@gmail.com"
+          href="https://wa.me/556283155703"
           className="inline-flex h-16 items-center justify-center px-10 rounded-full bg-primary text-surface font-headline font-bold text-lg hover:shadow-[0_0_40px_rgba(255,122,0,0.4)] hover:-translate-y-1 transition-all duration-300"
         >
           Entre em Contato
