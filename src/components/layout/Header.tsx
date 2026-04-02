@@ -5,9 +5,9 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-import LogoAwtDefault from "../../assets/awtHeaderLogo.png";
-import LogoAwtDarkOrange from "../../assets/awtHeaderLogoDarkOrange.png";
-import LogoAwtPurple from "../../assets/awtHeaderLogoPurple.png";
+import LogoAwtDefault from "@/assets/awtHeaderLogo.png";
+import LogoAwtDarkOrange from "@/assets/awtHeaderLogoDarkOrange.png";
+import LogoAwtPurple from "@/assets/awtHeaderLogoPurple.png";
 
 export default function Header() {
   const { resolvedTheme } = useTheme();
@@ -29,18 +29,18 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-background/80 border-b border-border-subtle/20">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="#" className="flex items-center gap-2">
           {/* Logo container */}
           <div className="w-32 h-32 rounded-sm flex items-center justify-center pt-2">
             <Image src={logoSrc} alt="Logo AWT Development" className="w-full h-auto" />
           </div>
         </Link>
-        
+
         <nav className="hidden md:flex gap-8">
           <Link href="/" className="text-sm font-medium hover:text-primary transition-colors">Home</Link>
-          <Link href="#projetos" className="text-sm font-medium hover:text-primary transition-colors text-secondary-text">Projetos</Link>
           <Link href="#servicos" className="text-sm font-medium hover:text-primary transition-colors text-secondary-text">Serviços</Link>
-          <Link href="#sobre" className="text-sm font-medium hover:text-primary transition-colors text-secondary-text">Quem Somos</Link>
+          <Link href="#projetos" className="text-sm font-medium hover:text-primary transition-colors text-secondary-text">Projetos</Link>
+          {/*<Link href="#sobre" className="text-sm font-medium hover:text-primary transition-colors text-secondary-text">Quem Somos</Link>*/}
         </nav>
 
         <div className="flex items-center gap-4">

@@ -6,10 +6,10 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { MapPin, Phone, Mail } from "lucide-react";
 
-import Instagram from "../../assets/instagram.svg";
-import AwtFooterLogoDefault from "../../assets/awtFooterLogo.png";
-import AwtFooterLogoDarkOrange from "../../assets/awtFooterLogoDarkOrange.png";
-import AwtFooterLogoPurple from "../../assets/awtFooterLogoPurple.png";
+import Instagram from "@/assets/instagram.svg";
+import AwtFooterLogoDefault from "@/assets/awtFooterLogo.png";
+import AwtFooterLogoDarkOrange from "@/assets/awtFooterLogoDarkOrange.png";
+import AwtFooterLogoPurple from "@/assets/awtFooterLogoPurple.png";
 
 export default function Footer() {
   const { resolvedTheme } = useTheme();
@@ -43,8 +43,8 @@ export default function Footer() {
           <h4 className="font-headline font-medium text-primary-text mb-6">Navegação</h4>
           <ul className="space-y-4">
             <li><Link href="/" className="text-secondary-text hover:text-primary transition-colors text-sm">Home</Link></li>
-            <li><Link href="#projetos" className="text-secondary-text hover:text-primary transition-colors text-sm">Projetos</Link></li>
             <li><Link href="#servicos" className="text-secondary-text hover:text-primary transition-colors text-sm">Serviços</Link></li>
+            <li><Link href="#projetos" className="text-secondary-text hover:text-primary transition-colors text-sm">Projetos</Link></li>
             <li><Link href="#contato" className="text-secondary-text hover:text-primary transition-colors text-sm">Contato</Link></li>
           </ul>
         </div>
