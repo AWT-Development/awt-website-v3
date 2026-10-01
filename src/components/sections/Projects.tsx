@@ -32,7 +32,7 @@ export function Projects({ lang, dict }: ProjectsProps) {
               key={project.slug}
               data-stack-card
               style={{ top: `calc(5.5rem + ${index} * 0.75rem)` }}
-              className="group grid gap-8 lg:sticky overflow-hidden rounded-[2rem] bg-ink-800 p-6 md:p-10 lg:min-h-[calc(100svh-9rem)] lg:grid-cols-12 lg:items-center lg:gap-12"
+              className="group relative grid gap-8 overflow-hidden lg:sticky rounded-[2rem] bg-ink-800 p-6 md:p-10 lg:min-h-[calc(100svh-9rem)] lg:grid-cols-12 lg:items-center lg:gap-12"
             >
               <span
                 data-stack-shade

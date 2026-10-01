@@ -26,7 +26,7 @@ export function Contact({ lang, dict }: ContactProps) {
     >
       <Container className="grid items-start gap-14 lg:grid-cols-12 lg:gap-16">
         <div className="contents lg:sticky lg:top-24 lg:col-span-5 lg:block">
-          <div className="order-1 lg:order-none">
+          <div className="order-1 min-w-0 lg:order-none">
             <p className="label text-ink-950/70">{dict.label}</p>
             <h2 className="mt-6 text-display text-balance">
               {renderEmphasis(dict.title, "text-paper")}
@@ -48,7 +48,7 @@ export function Contact({ lang, dict }: ContactProps) {
             </div>
           </div>
 
-          <ul className="order-3 flex flex-col gap-4 border-t border-ink-950/20 pt-8 lg:order-none lg:mt-12">
+          <ul className="order-3 flex min-w-0 flex-col gap-4 border-t border-ink-950/20 pt-8 lg:order-none lg:mt-12">
             {channels.map((channel) => (
               <li key={channel.label} className="flex flex-col gap-1">
                 <span className="label text-ink-950/60">{channel.label}</span>
@@ -57,7 +57,7 @@ export function Contact({ lang, dict }: ContactProps) {
                   {...(channel.href.startsWith("http")
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
-                  className="w-fit text-h3 underline-offset-4 hover:underline"
+                  className="w-fit max-w-full text-h3 [overflow-wrap:anywhere] underline-offset-4 hover:underline"
                 >
                   {channel.text}
                 </a>
@@ -72,7 +72,7 @@ export function Contact({ lang, dict }: ContactProps) {
           </ul>
         </div>
 
-        <div className="order-2 lg:order-none lg:col-span-7">
+        <div className="order-2 min-w-0 lg:order-none lg:col-span-7">
           <BriefingForm lang={lang} dict={dict.form} />
         </div>
       </Container>
