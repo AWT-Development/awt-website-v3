@@ -1,93 +1,104 @@
-"use client";
-
 import Link from "next/link";
-import Image from "next/image";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { MapPin, Phone, Mail } from "lucide-react";
-import { motion } from "framer-motion";
 
-import Instagram from "@/assets/instagram.svg";
-import AwtFooterLogoDefault from "@/assets/awtFooterLogo.png";
-import AwtFooterLogoDarkOrange from "@/assets/awtFooterLogoDarkOrange.png";
-import AwtFooterLogoPurple from "@/assets/awtFooterLogoPurple.png";
+import { AwtLogo } from "@/components/brand/AwtLogo";
+import { BriefingLink } from "@/components/briefing/BriefingLink";
+import { BackToTop } from "@/components/layout/BackToTop";
+import { LocalTime } from "@/components/layout/LocalTime";
+import { Container } from "@/components/ui/Container";
+import { site, whatsappHref } from "@/content/site";
+import { localePath, type Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries/pt";
+import { navLinks } from "@/lib/nav";
 
-export default function Footer() {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+type FooterProps = { lang: Locale; dict: Dictionary };
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const logoSrc = !mounted
-    ? AwtFooterLogoDefault
-    : resolvedTheme === "light"
-      ? AwtFooterLogoDarkOrange
-      : resolvedTheme === "dark-purple"
-        ? AwtFooterLogoPurple
-        : AwtFooterLogoDefault; // fallback for 'dark'
+export function Footer({ lang, dict }: FooterProps) {
+  const contacts = [
+    { label: site.phone, href: whatsappHref(lang), external: true },
+    { label: site.email, href: `mailto:${site.email}` },
+    { label: site.instagram.handle, href: site.instagram.href, external: true },
+  ];
 
   return (
-    <motion.footer 
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="w-full bg-surface-deep pt-16 pb-8 border-t border-border-subtle/10 mt-auto"
-    >
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-        <div className="col-span-1 md:col-span-2 space-y-4">
-          <div className="flex items-center gap-2 mb-6">
-            <Image src={logoSrc} alt="AWT Development Footer Logo" className="w-48 h-auto" />
+    <footer className="relative z-10 -mt-10 overflow-hidden rounded-t-panel bg-ink-950 pt-20 md:pt-28">
+      <Container>
+        <div className="grid gap-14 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <AwtLogo className="h-9 w-auto text-paper" />
+            <p className="mt-6 max-w-sm text-body-lg text-muted">
+              {dict.footer.tagline}
+            </p>
+            <BriefingLink className="mt-8">
+              {dict.nav.cta} <span aria-hidden>→</span>
+            </BriefingLink>
           </div>
-          <p className="text-secondary-text max-w-sm leading-relaxed">
-            Elevamos o padrão do desenvolvimento web. Criamos infraestruturas digitais que suportam o crescimento acelerado do seu negócio.
+
+          <nav aria-label={dict.footer.navigation} className="lg:col-span-3">
+            <p className="label text-muted">{dict.footer.navigation}</p>
+            <ul className="mt-6 flex flex-col gap-3">
+              {[...navLinks, { id: "contato", key: "contact" as const }].map(
+                (link) => (
+                  <li key={link.id}>
+                    <Link
+                      href={`${localePath(lang)}#${link.id}`}
+                      className="transition-colors hover:text-orange-500"
+                    >
+                      {link.key === "contact"
+                        ? dict.footer.contact
+                        : dict.nav[link.key]}
+                    </Link>
+                  </li>
+                ),
+              )}
+            </ul>
+          </nav>
+
+          <div className="lg:col-span-4">
+            <p className="label text-muted">{dict.footer.contact}</p>
+            <ul className="mt-6 flex flex-col gap-3">
+              {contacts.map((contact) => (
+                <li key={contact.label}>
+                  <a
+                    href={contact.href}
+                    {...(contact.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                    className="transition-colors hover:text-orange-500"
+                  >
+                    {contact.label}
+                  </a>
+                </li>
+              ))}
+              <li className="text-muted">{site.location}</li>
+            </ul>
+          </div>
+        </div>
+
+        <AwtLogo
+          tone="mono"
+          aria-hidden
+          role="presentation"
+          className="mt-16 h-auto w-full max-w-4xl text-paper/[0.06] md:mt-24"
+        />
+
+        <div className="flex flex-col gap-4 border-t border-line py-8 text-sm text-muted md:flex-row md:items-center md:justify-between">
+          <p>
+            © {new Date().getFullYear()} {site.name}. {dict.footer.rights}
           </p>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+            <Link
+              href={localePath(lang, "/privacidade")}
+              className="transition-colors hover:text-paper"
+            >
+              {dict.footer.privacy}
+            </Link>
+            <p className="label">
+              Goiânia · <LocalTime lang={lang} />
+            </p>
+            <BackToTop>{dict.footer.backToTop}</BackToTop>
+          </div>
         </div>
-
-        <div>
-          <h4 className="font-headline font-medium text-primary-text mb-6">Navegação</h4>
-          <ul className="space-y-4">
-            <li><Link href="/" className="text-secondary-text hover:text-primary transition-colors text-sm">Home</Link></li>
-            <li><Link href="#servicos" className="text-secondary-text hover:text-primary transition-colors text-sm">Serviços</Link></li>
-            <li><Link href="#projetos" className="text-secondary-text hover:text-primary transition-colors text-sm">Projetos</Link></li>
-            <li><Link href="#contato" className="text-secondary-text hover:text-primary transition-colors text-sm">Contato</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-headline font-medium text-primary-text mb-6">Contato</h4>
-          <ul className="space-y-4">
-            <li className="flex items-center gap-3 text-sm text-secondary-text">
-              <MapPin className="text-primary w-5 h-5 flex-shrink-0" />
-              Goiânia, GO - Brasil
-            </li>
-            <li className="flex items-center gap-3 text-sm text-secondary-text">
-              <Phone className="text-primary w-5 h-5 flex-shrink-0" />
-              +55 62 8315-5703
-            </li>
-            <li className="flex items-center gap-3 text-sm text-secondary-text">
-              <Mail className="text-primary w-5 h-5 flex-shrink-0" />
-              awtdevelopment@gmail.com
-            </li>
-            <li className="flex items-center gap-3 text-sm text-secondary-text">
-              <Image src={Instagram} alt="Instagram" className="w-5 h-5 flex-shrink-0" />
-              @awtdevelopment (instagram)
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 pt-8 border-t border-border-subtle/10 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-xs text-secondary-text">
-          © {new Date().getFullYear()} AWT Development. Todos os direitos reservados.
-        </p>
-        <div className="flex gap-4">
-          <Link href="#" className="text-xs text-secondary-text hover:text-primary-text transition-colors">Privacy Policy</Link>
-          <Link href="#" className="text-xs text-secondary-text hover:text-primary-text transition-colors">Terms of Service</Link>
-        </div>
-      </div>
-    </motion.footer>
+      </Container>
+    </footer>
   );
 }

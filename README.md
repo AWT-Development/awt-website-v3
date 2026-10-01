@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AWT Development — Website
 
-## Getting Started
+Site da AWT Development, em reconstrução na branch `refactor/v4`.
+O plano completo (diagnóstico, referências, direção criativa, seções, motion e fases) está em [docs/BLUEPRINT.md](docs/BLUEPRINT.md).
 
-First, run the development server:
+## Stack
+
+Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · GSAP + Lenis · Motion
+
+## Rodando
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Português em `http://localhost:3000/`, inglês em `http://localhost:3000/en`. O idioma é detectado pelo navegador na primeira visita; trocar o idioma manualmente grava a escolha.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Onde fica cada coisa
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Pasta | Conteúdo |
+| :--- | :--- |
+| `src/app/[lang]` | Layout e páginas, por idioma |
+| `src/proxy.ts` | Roteamento de idioma (pt na raiz, `/en` com prefixo) |
+| `src/i18n` | Configuração de idiomas e dicionários de interface |
+| `src/content` | Dados do site: contatos, serviços, projetos, estatísticas |
+| `src/components` | `layout`, `sections`, `motion`, `ui`, `brand` |
+| `src/assets/brand` | Logos (o símbolo em SVG oficial entra aqui) |
+| `src/assets/projects/<slug>` | Capas e mídias de cada projeto |
 
-## Learn More
+## Variáveis de ambiente
 
-To learn more about Next.js, take a look at the following resources:
+| Variável | Uso |
+| :--- | :--- |
+| `NEXT_PUBLIC_SITE_URL` | URL pública do site (padrão: `https://www.awtdevelopment.com`), usada em canonical, sitemap e Open Graph |
+| `RESEND_API_KEY` | Chave da Resend para enviar o briefing por e-mail. Sem ela, o briefing segue só pelo WhatsApp |
+| `BRIEFING_TO` | Destinatário do briefing (padrão: e-mail em `src/content/site.ts`) |
+| `BRIEFING_FROM` | Remetente verificado na Resend, ex.: `AWT Site <contato@seudominio.com.br>` |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Há um modelo em `.env.example`; copie para `.env.local`.
