@@ -44,13 +44,13 @@ export function Technologies({ dict }: { dict: Dictionary["technologies"] }) {
       id="tecnologias"
       className="relative overflow-hidden border-t border-line bg-ink-950 py-24 md:py-32"
     >
-      <Container>
+      <Container data-reveal>
         <p className="label text-muted">{dict.label}</p>
         <h2 className="mt-6 max-w-3xl text-h2 text-balance">{dict.title}</h2>
         <p className="mt-6 max-w-xl text-body-lg text-muted">{dict.text}</p>
       </Container>
 
-      <div className="mt-16 flex flex-col gap-4">
+      <div data-reveal className="mt-16 flex flex-col gap-4">
         {technologyRows.map((items, index) => (
           <Marquee
             key={index}

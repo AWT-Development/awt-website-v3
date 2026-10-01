@@ -16,7 +16,7 @@ export function Projects({ lang, dict }: ProjectsProps) {
       className="relative z-10 -mt-10 rounded-t-panel bg-ink-900 py-24 md:py-36"
     >
       <Container>
-        <div className="max-w-3xl">
+        <div data-reveal className="max-w-3xl">
           <p className="label text-muted">{dict.label}</p>
           <h2 className="mt-6 text-display text-balance">
             {renderEmphasis(dict.title)}
@@ -106,6 +106,7 @@ export function Projects({ lang, dict }: ProjectsProps) {
 
         <a
           href="#contato"
+          data-reveal
           className="group mt-16 inline-flex items-center gap-3 text-h3 transition-colors hover:text-orange-500"
         >
           {dict.cta}

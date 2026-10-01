@@ -71,7 +71,6 @@
   --dur-base: 600ms;
 
   --gutter: clamp(1.25rem, 4vw, 3rem);
-  interpolate-size: allow-keywords;
 }
 
 html {
@@ -116,12 +115,6 @@ html.custom-cursor textarea {
   text-transform: uppercase;
 }
 
-/* A máscara do SplitReveal cortaria descendentes (g, p, ç) em títulos de entrelinha justa. */
-.split-line-mask {
-  padding-block: 0.14em;
-  margin-block: -0.14em;
-}
-
 /* Símbolo que se desenha (os paths precisam de `pathLength="1"`). */
 @keyframes symbol-draw {
   from {
@@ -140,6 +133,82 @@ html.custom-cursor textarea {
   stroke-dasharray: 1;
   animation: symbol-draw 1.6s var(--ease-in-out-quart) both;
   animation-delay: var(--draw-delay, 0s);
+}
+
+/* Digitação do título do hero: cada letra aparece no seu turno; o cursor pisca na última. */
+@keyframes type-caret {
+  0%,
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes type-caret-end {
+  0%,
+  40%,
+  80% {
+    opacity: 1;
+  }
+  20%,
+  60%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes type-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.type-char {
+  --type-step: 48ms;
+  --type-delay: calc(0.35s + var(--i) * var(--type-step));
+  position: relative;
+  animation: type-in 0.001s linear both;
+  animation-delay: var(--type-delay);
+}
+
+.type-char::after {
+  content: "";
+  position: absolute;
+  top: 0.06em;
+  bottom: 0.02em;
+  right: -0.05em;
+  width: 0.05em;
+  background: var(--color-orange-500);
+  opacity: 0;
+  animation: type-caret var(--type-step) steps(1, end) forwards;
+  animation-delay: var(--type-delay);
+}
+
+.type-last::after {
+  animation: type-caret-end 2.4s steps(1, end) forwards;
+  animation-delay: var(--type-delay);
+}
+
+html[data-splash="play"] .type-char,
+html[data-splash="play"] .type-char::after {
+  animation-play-state: paused;
+}
+
+/* Revelação ao rolar: só quando o JavaScript está ativo (a classe `js` vem do script do <head>). */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.9s var(--ease-out-expo) var(--reveal-delay, 0s),
+    transform 0.9s var(--ease-out-expo) var(--reveal-delay, 0s),
+    background-color 0.6s var(--ease-out-expo);
+}
+
+html.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 /* Abertura: o script do <head> define data-splash como play, leaving ou done. */
@@ -198,35 +267,6 @@ html[data-splash="play"] .symbol-draw [data-symbol-path] {
   animation: step-in 0.5s var(--ease-out-expo) both;
 }
 
-/* FAQ: <details> com altura animada (sem suporte do navegador, abre sem animação). */
-.faq-item::details-content {
-  block-size: 0;
-  overflow: clip;
-  transition:
-    block-size 0.45s var(--ease-out-expo),
-    content-visibility 0.45s allow-discrete;
-}
-
-.faq-item[open]::details-content {
-  block-size: auto;
-}
-
-.faq-item summary {
-  list-style: none;
-}
-
-.faq-item summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-item .faq-icon {
-  transition: transform 0.4s var(--ease-out-expo);
-}
-
-.faq-item[open] .faq-icon {
-  transform: rotate(45deg);
-}
-
 /* Marcador de etapa do processo: acende quando a linha chega nele. */
 .process-marker {
   transition:
@@ -240,6 +280,16 @@ html[data-splash="play"] .symbol-draw [data-symbol-path] {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .type-char,
+  .type-char::after {
+    animation: none !important;
+  }
+
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
   *,
   *::before,
   *::after {

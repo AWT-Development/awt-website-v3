@@ -1,9 +1,8 @@
 import { AwtSymbol } from "@/components/brand/AwtSymbol";
 import { BlueprintGrid } from "@/components/brand/BlueprintGrid";
-import { SplitReveal } from "@/components/motion/SplitReveal";
+import { TypedText } from "@/components/motion/TypedText";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { renderEmphasis } from "@/lib/emphasis";
 import type { Dictionary } from "@/i18n/dictionaries/pt";
 
 export function Hero({ dict }: { dict: Dictionary["hero"] }) {
@@ -24,9 +23,9 @@ export function Hero({ dict }: { dict: Dictionary["hero"] }) {
 
       <Container className="relative grid items-end gap-12 lg:grid-cols-12">
         <div className="lg:col-span-8">
-          <SplitReveal as="h1" className="text-display-xl text-balance">
-            {renderEmphasis(dict.title)}
-          </SplitReveal>
+          <h1 className="text-display-xl text-balance">
+            <TypedText text={dict.title} />
+          </h1>
 
           <p className="mt-8 max-w-xl text-body-lg text-muted">
             {dict.subtitle}

@@ -20,7 +20,7 @@ export function Clients({ dict }: { dict: Dictionary["clients"] }) {
       className="relative border-t border-line-ink bg-paper pt-14 pb-24 text-ink-950 md:pt-20 md:pb-28"
     >
       <Container>
-        <p className="label text-ink-950/60">{dict.label}</p>
+        <p data-reveal className="label text-ink-950/60">{dict.label}</p>
       </Container>
 
       <Marquee

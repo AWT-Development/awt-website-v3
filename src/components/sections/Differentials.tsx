@@ -1,5 +1,4 @@
 import { BriefingLink } from "@/components/briefing/BriefingLink";
-import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "@/components/ui/Container";
 import { differentials } from "@/content/differentials";
 import type { Locale } from "@/i18n/config";
@@ -15,18 +14,17 @@ export function Differentials({ lang, dict }: DifferentialsProps) {
       className="relative z-10 -mt-10 rounded-t-panel bg-ink-950 py-24 md:py-36"
     >
       <Container>
-        <p className="label text-muted">{dict.label}</p>
-        <h2 className="mt-6 max-w-3xl text-display text-balance">
+        <p data-reveal className="label text-muted">{dict.label}</p>
+        <h2 data-reveal className="mt-6 max-w-3xl text-display text-balance">
           {renderEmphasis(dict.title)}
         </h2>
 
-        <Reveal
-          as="ul"
-          className="mt-16 grid border-b border-line sm:grid-cols-2 lg:grid-cols-3"
-        >
+        <ul className="mt-16 grid border-b border-line sm:grid-cols-2 lg:grid-cols-3">
           {differentials.map((item, index) => (
             <li
               key={item.id}
+              data-reveal
+              style={{ "--reveal-delay": `${(index % 3) * 90}ms` } as React.CSSProperties}
               className="border-t border-line p-7 transition-colors duration-(--dur-base) ease-out-expo hover:bg-ink-900 md:p-10"
             >
               <span className="font-tech text-xl text-orange-500">
@@ -36,9 +34,9 @@ export function Differentials({ lang, dict }: DifferentialsProps) {
               <p className="mt-4 max-w-sm text-muted">{item.text[lang]}</p>
             </li>
           ))}
-        </Reveal>
+        </ul>
 
-        <div className="mt-16 flex justify-start md:justify-center">
+        <div data-reveal className="mt-16 flex justify-start md:justify-center">
           <BriefingLink>
             {dict.cta} <span aria-hidden>→</span>
           </BriefingLink>

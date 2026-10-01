@@ -17,7 +17,7 @@ export function Process({ lang, dict }: ProcessProps) {
     >
       <ProcessScroller className="flex flex-col justify-center gap-14 bg-paper py-24 lg:h-svh lg:gap-12 lg:py-16 lg:rounded-t-panel">
         <Container className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div>
+          <div data-reveal>
             <p className="label text-ink-950/60">{dict.label}</p>
             <h2 className="mt-6 max-w-3xl text-h2 text-balance">
               {renderEmphasis(dict.title, "text-orange-700")}

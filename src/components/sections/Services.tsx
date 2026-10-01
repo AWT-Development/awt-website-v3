@@ -18,11 +18,11 @@ export function Services({ lang, dict }: ServicesProps) {
     >
       <Container className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:sticky lg:top-28 lg:col-span-4">
-          <p className="label text-ink-950/60">{dict.label}</p>
-          <h2 className="mt-6 text-h2 text-balance">
+          <p data-reveal className="label text-ink-950/60">{dict.label}</p>
+          <h2 data-reveal className="mt-6 text-h2 text-balance">
             {renderEmphasis(dict.title, "text-orange-700")}
           </h2>
-          <p className="mt-6 max-w-sm text-body-lg text-ink-950/70">
+          <p data-reveal className="mt-6 max-w-sm text-body-lg text-ink-950/70">
             {dict.intro}
           </p>
         </div>

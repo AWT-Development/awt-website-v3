@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Aldrich, Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 
@@ -7,6 +8,7 @@ import { Cursor } from "@/components/layout/Cursor";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Splash } from "@/components/layout/Splash";
+import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { site } from "@/content/site";
 import {
@@ -98,13 +100,17 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${geist.variable} ${geistMono.variable} ${aldrich.variable}`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: splashScript }} />
-      </head>
       <body className="flex min-h-svh flex-col">
+        {/* `next/script`: uma <script> comum no layout gera erro do React 19 ao re-renderizar no cliente. */}
+        <Script
+          id="splash-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: splashScript }}
+        />
         <Splash />
         <Cursor />
         <SmoothScroll />
+        <ScrollReveal />
         <Header lang={lang} dict={dict} />
         {children}
         <Footer lang={lang} dict={dict} />

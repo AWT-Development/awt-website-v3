@@ -9,7 +9,7 @@ export function Manifesto({ dict }: { dict: Dictionary["manifesto"] }) {
       className="relative border-t border-line py-32 md:py-48"
     >
       <Container className="grid gap-10 lg:grid-cols-12">
-        <p className="label text-muted lg:col-span-3">{dict.label}</p>
+        <p data-reveal className="label text-muted lg:col-span-3">{dict.label}</p>
 
         <ScrubText
           as="p"
