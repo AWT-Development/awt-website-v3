@@ -135,14 +135,16 @@ html.custom-cursor textarea {
   animation-delay: var(--draw-delay, 0s);
 }
 
-/* Digitação do título do hero: cada letra aparece no seu turno; o cursor pisca na última. */
+/*
+ * Digitação do título do hero: cada letra aparece no seu turno e o cursor pisca na última.
+ * O cursor (::after) fica `opacity: 0` por padrão e a animação o acende só durante o turno,
+ * SEM `fill-mode`: fora dela ele volta sozinho a 0. Depender do último quadro (`forwards`)
+ * deixava os cursores das primeiras letras acesos no Safari do iPhone.
+ */
 @keyframes type-caret {
-  0%,
-  99% {
+  from,
+  to {
     opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 
@@ -182,12 +184,12 @@ html.custom-cursor textarea {
   width: 0.05em;
   background: var(--color-orange-500);
   opacity: 0;
-  animation: type-caret var(--type-step) steps(1, end) forwards;
+  animation: type-caret var(--type-step) linear;
   animation-delay: var(--type-delay);
 }
 
 .type-last::after {
-  animation: type-caret-end 2.4s steps(1, end) forwards;
+  animation: type-caret-end 2.4s steps(1, end);
   animation-delay: var(--type-delay);
 }
 
