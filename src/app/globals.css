@@ -260,6 +260,8 @@ html[data-splash="play"] .symbol-draw [data-symbol-path] {
   position: absolute;
   translate: -50% -50%;
   border-radius: 9999px;
+  /* Degradê radial em vez de `filter: blur()`: o blur de um elemento enorme em movimento é repintado a cada quadro. */
+  background: radial-gradient(closest-side, var(--aura-color), transparent);
   pointer-events: none;
   animation: aura-orbit var(--orbit-duration) linear infinite;
   will-change: transform;

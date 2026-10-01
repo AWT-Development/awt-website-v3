@@ -14,10 +14,10 @@ export function Hero({ dict }: { dict: Dictionary["hero"] }) {
       <BlueprintGrid />
       <div aria-hidden className="absolute inset-0 overflow-hidden">
         <div
-          className="aura left-[68%] top-[34%] size-[58vw] bg-violet-700/30 blur-[150px] [--orbit-duration:26s] [--orbit-radius:12vw]"
+          className="aura left-[68%] top-[34%] size-[90vw] [--aura-color:color-mix(in_oklab,var(--color-violet-700)_30%,transparent)] [--orbit-duration:26s] [--orbit-radius:12vw]"
         />
         <div
-          className="aura left-[28%] top-[72%] size-[38vw] bg-orange-500/10 blur-[130px] [--orbit-duration:34s] [--orbit-radius:9vw] [animation-direction:reverse]"
+          className="aura left-[28%] top-[72%] size-[62vw] [--aura-color:color-mix(in_oklab,var(--color-orange-500)_12%,transparent)] [--orbit-duration:34s] [--orbit-radius:9vw] [animation-direction:reverse]"
         />
       </div>
 
