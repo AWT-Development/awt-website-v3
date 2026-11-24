@@ -6,10 +6,12 @@ import docesFinosCover from "@/assets/projects/doces-finos/cover.webp";
 import hyperionCover from "@/assets/projects/hyperion-global/cover.webp";
 import isotelhasCover from "@/assets/projects/isotelhas-tapajos/cover.webp";
 import luccaCover from "@/assets/projects/lucca/cover.webp";
+import miamiSportsCover from "@/assets/projects/miami-sports/cover.webp";
 
 export type ProjectCategory =
   | "landing-page"
   | "site-pessoal"
+  | "site-institucional"
   | "sistema-web"
   | "automacao"
   | "app"
@@ -35,6 +37,7 @@ export type Project = {
 export const categoryLabels: Record<ProjectCategory, Localized> = {
   "landing-page": { pt: "Landing Page", en: "Landing Page" },
   "site-pessoal": { pt: "Site Pessoal", en: "Personal Website" },
+  "site-institucional": { pt: "Site Institucional", en: "Corporate Website" },
   "sistema-web": { pt: "Sistema Web", en: "Web System" },
   automacao: { pt: "Automação", en: "Automation" },
   app: { pt: "App", en: "App" },
@@ -47,6 +50,23 @@ export const categoryLabels: Record<ProjectCategory, Localized> = {
  * e acrescentar um objeto à lista, no formato dos existentes.
  */
 export const projects: Project[] = [
+  {
+    slug: "miami-sports",
+    name: "Miami Sports",
+    category: "site-institucional",
+    services: {
+      pt: ["Identidade Visual", "Design", "Desenvolvimento"],
+      en: ["Brand Identity", "Design", "Development"],
+    },
+    summary: {
+      pt: "Site com movimento para uma agência que leva jogadores de futebol aos EUA como estudantes-atletas, com a identidade visual completa criada por nós: logo, brandbook e fontes.",
+      en: "A motion-rich website for an agency that takes football players to the USA as student-athletes, with the full brand identity created by us: logo, brandbook and fonts.",
+    },
+    accentColor: "#2f7bd9",
+    cover: miamiSportsCover,
+    liveUrl: "https://miamisports.co",
+    order: 0,
+  },
   {
     slug: "hyperion-global",
     name: "Hyperion Global",
